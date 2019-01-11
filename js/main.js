@@ -1,58 +1,29 @@
 class Paddle {
-  constructor(width, height, top, left) {
+  constructor(width, height, positionOfY, positionOfX, color) {
     this.height = height;
     this.width = width;
-    this.top = top;
-    this.left = left;
+    this.positionOfY = positionOfY;
+    this.positionOfX = positionOfX;
+    this.color = color;
   }
 }
 
-const addPixelSuffix = function(dimension) {
-  return dimension + "px";
-};
+addPixelSuffix = dimension => dimension + "px";
 
-const createPaddleObject = function(height, width, top, left) {
-  height = addPixelSuffix(height);
-  width = addPixelSuffix(width);
-  left = addPixelSuffix(left);
-  top = addPixelSuffix(top);
-  return new Paddle(width, height, top, left);
-};
-
-const getElement = function(document, elementId) {
-  return document.getElementById(elementId);
-};
-
-const getPaddlePreferences = function() {
-  let height = 30;
-  let width = 100;
-  let top = 640;
-  let left = 380;
-  return { height, width, top, left };
-};
-
-const createPaddle = function(document) {
-  return document.createElement("div");
-};
+getElement = (document, elementId) => document.getElementById(elementId);
 
 const applyPaddlePreferences = function(paddlePreferences, paddle_1) {
-  paddle_1.style.backgroundColor = "black";
-  paddle_1.style.width = paddlePreferences.width;
-  paddle_1.style.height = paddlePreferences.height;
-  paddle_1.style.marginTop = paddlePreferences.top;
-  paddle_1.style.marginLeft = paddlePreferences.left;
-  return;
-};
-
-const getPaddleObject = function() {
-  let { height, width, top, left } = getPaddlePreferences();
-  return createPaddleObject(height, width, top, left);
+  paddle_1.style.backgroundColor = paddlePreferences.color;
+  paddle_1.style.width = addPixelSuffix(paddlePreferences.width);
+  paddle_1.style.height = addPixelSuffix(paddlePreferences.height);
+  paddle_1.style.marginTop = addPixelSuffix(paddlePreferences.positionOfY);
+  paddle_1.style.marginLeft = addPixelSuffix(paddlePreferences.positionOfX);
 };
 
 const initialiseScreen = function() {
   let screen = getElement(document, "screen");
-  let paddlePreferences = getPaddleObject();
-  let paddle_1 = createPaddle(document);
+  let paddlePreferences = new Paddle(100, 30, 630, 430, "black");
+  let paddle_1 = document.createElement("div");
   screen.appendChild(paddle_1);
   applyPaddlePreferences(paddlePreferences, paddle_1);
 };
