@@ -5,16 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="icon" href="/images/icon.png" />
     <title>Bricks</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      media="screen"
-      href="/css/main.css"
-    />
-    <script src="/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+    <script src="/js/brickController.js"></script>
+    <script src="/js/bricksModel.js"></script>
+ 
   </head>
   <body>
-    <main id="screen" class="container" tabindex="0">
-    </main>
+    <main id="gameWindow" class="container" tabindex="0"></main>
+    <article id="buttonContainer" class="start">
+      <button id="startGame" class="startButton" onclick="startGame()">
+        START GAME
+      </button>
+    </article>
   </body>
 </html>
