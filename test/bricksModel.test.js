@@ -27,3 +27,17 @@ describe("subtract", function() {
     chai.assert.deepEqual(subtract(5, 2), 3);
   });
 });
+
+describe("moveRight", function() {
+  it("should return the new position of x as '440'  when given the paddle with x position as '430'", function() {
+    let paddle = new Paddle(100, 30, 630, 430, 10);
+    chai.assert.deepEqual(paddle.moveRight(), 440);
+  });
+});
+
+describe("moveLeft", function() {
+  it("should return the new position of x as '420'  when given the paddle with x position as '430'", function() {
+    let paddle = new Paddle(100, 30, 630, 430, 10);
+    chai.assert.deepEqual(paddle.moveLeft(), 420);
+  });
+});

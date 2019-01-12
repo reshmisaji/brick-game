@@ -9,12 +9,12 @@ class Paddle {
 
   moveRight() {
     if (isInsideRightEnd(this.positionOfX))
-      this.positionOfX = add(this.positionOfX, this.speed);
+      return (this.positionOfX = add(this.positionOfX, this.speed));
   }
 
   moveLeft() {
     if (isInsideLeftEnd(this.positionOfX))
-      this.positionOfX = subtract(this.positionOfX, this.speed);
+      return (this.positionOfX = subtract(this.positionOfX, this.speed));
   }
 }
 
@@ -25,6 +25,11 @@ class Ball {
     this.speed = speed;
     this.positionOfY = positionOfY;
     this.positionOfX = positionOfX;
+  }
+
+  moveBall() {
+    this.positionOfX = this.positionOfX - 5;
+    this.positionOfY = this.positionOfY - 5;
   }
 }
 

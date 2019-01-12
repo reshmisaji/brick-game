@@ -22,33 +22,57 @@ const applyElementPreferences = function(
   );
 };
 
-const createElement = function(document, elementId, elementClass) {
-  let element = document.createElement("div");
+const startGame = function(document, ballPreferences) {
+  getElement(document, "startGame").remove();
+  setInterval(function() {
+    ballPreferences.moveBall();
+    applyElementPreferences(document, ballPreferences, "ball_1");
+  }, 100);
+};
+
+const createElement = function(document, tagName, elementId, elementClass) {
+  let element = document.createElement(tagName);
   element.id = elementId;
   element.className = elementClass;
   return element;
 };
 
-const addPadle = function(document, screen) {
+const addPaddle = function(document, screen) {
   let paddlePreferences = new Paddle(100, 30, 630, 430, 10);
-  let paddle = createElement(document, "paddle_1", "paddle");
+  let paddle = createElement(document, "div", "paddle_1", "paddle");
   screen.appendChild(paddle);
   applyElementPreferences(document, paddlePreferences, "paddle_1");
-  screen.onkeydown = getKeyEvents.bind(null, document, paddlePreferences);
+  return paddlePreferences;
 };
 
 const addBall = function(document, screen) {
   let ballPreferences = new Ball(30, 600, 460, 10);
-  let ball = createElement(document, "ball_1", "ball");
+  let ball = createElement(document, "div", "ball_1", "ball");
   screen.appendChild(ball);
   applyElementPreferences(document, ballPreferences, "ball_1");
+  return ballPreferences;
+};
+
+const addStartButton = function(screen) {
+  let startButton = createElement(
+    document,
+    "button",
+    "startGame",
+    "startButton"
+  );
+  screen.appendChild(startButton);
+  startButton.innerHTML = "START GAME";
+  return startButton;
 };
 
 const initialiseScreen = function() {
   let screen = getElement(document, "gameWindow");
   screen.focus();
-  addPadle(document, screen);
-  addBall(document, screen);
+  let startButton = addStartButton(screen);
+  let paddlePreferences = addPaddle(document, screen);
+  let ballPreferences = addBall(document, screen);
+  startButton.onclick = startGame.bind(null, document, ballPreferences);
+  screen.onkeydown = getKeyEvents.bind(null, document, paddlePreferences);
 };
 
 window.onload = initialiseScreen;
