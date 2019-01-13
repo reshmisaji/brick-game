@@ -2,12 +2,6 @@ addPixelSuffix = dimension => dimension + "px";
 
 getElement = (document, elementId) => document.getElementById(elementId);
 
-const getKeyEvents = function(document, paddlePreferences) {
-  if (event.key == "ArrowRight") paddlePreferences.moveRight();
-  if (event.key == "ArrowLeft") paddlePreferences.moveLeft();
-  applyElementPreferences(document, paddlePreferences, "paddle_1");
-};
-
 const applyElementPreferences = function(
   document,
   applyElementPreferences,
@@ -35,14 +29,6 @@ const createElement = function(document, tagName, elementId, elementClass) {
   element.id = elementId;
   element.className = elementClass;
   return element;
-};
-
-const addPaddle = function(document, screen) {
-  let paddlePreferences = new Paddle(100, 30, 630, 430, 10);
-  let paddle = createElement(document, "div", "paddle_1", "paddle");
-  screen.appendChild(paddle);
-  applyElementPreferences(document, paddlePreferences, "paddle_1");
-  return paddlePreferences;
 };
 
 const addBall = function(document, screen) {
