@@ -1,9 +1,9 @@
 describe("isInsideRightEnd", function() {
-  it("should return 'true' when given any value less than 860", function() {
+  it("should return 'true' when given any value less than 960", function() {
     chai.assert.deepEqual(isInsideRightEnd(5), true);
   });
-  it("should return 'false' when given any value greater than 860", function() {
-    chai.assert.deepEqual(isInsideRightEnd(870), false);
+  it("should return 'false' when given any value greater than 960", function() {
+    chai.assert.deepEqual(isInsideRightEnd(1170), false);
   });
 });
 
