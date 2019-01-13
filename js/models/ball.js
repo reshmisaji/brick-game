@@ -1,15 +1,31 @@
 class Ball {
-  constructor(radius, positionOfY, positionOfX, speed) {
+  constructor(radius, positionOfY, positionOfX, speedX, speedY) {
     this.height = radius;
     this.width = radius;
-    this.speed = speed;
+    this.speedX = speedX;
+    this.speedY = speedY;
     this.positionOfY = positionOfY;
     this.positionOfX = positionOfX;
   }
 
   moveBall() {
-    this.positionOfX = this.positionOfX - 5;
-    this.positionOfY = this.positionOfY - 5;
+    this.positionOfX = subtract(this.positionOfX, this.speedX);
+    this.positionOfY = subtract(this.positionOfY, this.speedY);
+  }
+
+  setBallPreferences() {
+    if (this.positionOfX <= 0) {
+      this.speedX = -this.speedX;
+    }
+    if (this.positionOfY <= 0) {
+      this.speedY = -this.speedY;
+    }
+    if (this.positionOfX >= 950) {
+      this.speedX = -this.speedX;
+    }
+    if (this.positionOfY >= 655) {
+      this.speedY = -this.speedY;
+    }
   }
 }
 
