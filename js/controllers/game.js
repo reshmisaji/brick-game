@@ -1,8 +1,23 @@
-const startGame = function(document, ballPreferences) {
+const startGame = function(
+  document,
+  ballPreferences,
+  paddlePreferences,
+  brickPreferences
+) {
+  let screen = getElement(document, "gameWindow");
+  screen.focus();
   getElement(document, "startGame").remove();
-  setInterval(function() {
-    ballPreferences.setBallPreferences();
+  let interval = setInterval(function() {
+    ballPreferences.setBallPreferences(paddlePreferences);
+    if (ballPreferences.speedX == 0) {
+      gameOver(interval);
+    }
     ballPreferences.moveBall();
     applyElementPreferences(document, ballPreferences, "ball_1");
-  }, 10);
+  }, 50);
+};
+
+const gameOver = function(interval) {
+  alert("gameOver");
+  clearInterval(interval);
 };
